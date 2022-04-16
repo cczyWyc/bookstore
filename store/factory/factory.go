@@ -27,7 +27,7 @@ func Register(name string, p store.Store) {
 func New(providerName string) (store.Store, error) {
 	providersMu.RLock()
 	p, ok := providers[providerName]
-	providersMu.Unlock()
+	providersMu.RUnlock()
 	if !ok {
 		return nil, fmt.Errorf("store: unknown provider %s", providerName)
 	}
